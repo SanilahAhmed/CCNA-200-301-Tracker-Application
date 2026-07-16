@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'videos.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class RangeScreen extends StatelessWidget {
@@ -74,29 +75,56 @@ class VideoListPage extends StatefulWidget {
 
 class _VideoListPageState extends State<VideoListPage> {
   @override
+  Future<void> _openVideo(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      debugPrint("Could not launch $url");
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Every build method MUST start with a return statement
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[700],
         title: Text(widget.title),
+        backgroundColor: Colors.grey[850],
       ),
       body: ListView.builder(
         itemCount: widget.displayVideos.length,
         itemBuilder: (context, index) {
           final video = widget.displayVideos[index];
+
           return Card(
             color: Colors.white,
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: CheckboxListTile(
-              title: Text(video.title, style: TextStyle(fontSize: 14)),
-              value: video.done,
-              activeColor: Colors.grey[700],
-              onChanged: (val) {
-                setState(() {
-                  video.done = val!;
-                });
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: ListTile(
+              // 1. THIS MAKES THE ENTIRE ROW CLICKABLE
+              onTap: () {
+                _openVideo(video.url); // This calls the function from Step 3
               },
+
+              // 2. THE TEXT PART
+              title: Text(
+                  video.title,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w500)
+              ),
+              subtitle: const Text(
+                  "Tap to watch on YouTube",
+                  style: TextStyle(fontSize: 11, color: Colors.blueGrey)
+              ),
+
+              // 3. THE CHECKBOX PART (Stays on the right side)
+              trailing: Checkbox(
+                activeColor: Colors.grey[800],
+                value: video.done,
+                onChanged: (bool? val) {
+                  setState(() {
+                    video.done = val!;
+                  });
+                },
+              ),
             ),
           );
         },

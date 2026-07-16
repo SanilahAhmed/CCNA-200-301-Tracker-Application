@@ -1,3 +1,4 @@
+import 'package:ccna_tracker/main.dart';
 import 'package:flutter/material.dart';
 import 'range_screen.dart';
 import 'videos.dart';
@@ -24,25 +25,37 @@ class HomeScreen extends StatelessWidget {
               const Icon(Icons.computer, size: 80, color: Colors.white),
               const SizedBox(height: 30), // Adds space between icon and button
 
-              // Your Navigation Button
+              // Your Navigation
+              const Text(
+                "CCNA Tracker App",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "Based on Jeremy's IT Lab",
+                style: TextStyle(color: Colors.grey[400]),
+              ),
+
+              const SizedBox(height: 30),
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[800],
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30, vertical: 15),
+                  backgroundColor: Colors.blueGrey,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                 ),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      // Make sure 'videos' matches the name in your videos.dart file
-                      builder: (context) => RangeScreen(allVideos: videos),
-                    ),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
                 child: const Text(
-                  "View Video Ranges",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  "Start",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
             ],
@@ -51,4 +64,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
+}//VideoListPage(title: "Day 1 to 10", displayVideos: videos),
