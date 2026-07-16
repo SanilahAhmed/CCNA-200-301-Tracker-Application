@@ -1,16 +1,3 @@
-# ccna_tracker
+# CCNA 200-301 Tracker Application
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A Flutter CCNA 200-301 tracker. Features: Jeremy’s IT Lab integration, thumbnail-based navigation, progress statistics, and custom themes. Effortlessly track your study progress with interactive checklists in one intuitive, organized dashboard. An intuitive tool to keep your networking certification study organized and efficient.git add README.md
